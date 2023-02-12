@@ -1,9 +1,9 @@
-<div class="card">
+<div class="card border-0">
   <div class="card-img-wrapper">
-    <img class="card-img-top" src="assets/images/House_Default.jpg" />
+    <img class="card-img-top"  src="assets/images/House_Default.jpg" />
     <ul class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
-        <button class="btn btn-info"><img style="height: 30px; width: 30px;" src="assets/images/phone.svg" /></button>
+        <button class="btn btn-info" routerLink="/property-details/{{ Property.Id }}"><img style="height: 30px; width: 30px;" src="assets/images/phone.svg" /></button>
       </li>
       <li class="list-inline-item">
         <button class="btn btn-warning"><img style="height: 30px; width: 30px;" src="assets/images/email.svg" /></button>
@@ -11,9 +11,9 @@
     </ul>
   </div>
   <div class="card-body p2">
-    <h1>{{ Property.Name  }}</h1>
-    <h2>{{ Property.Type  }}</h2>
-    <h3>{{ Property.Price  }}</h3>
+    <h2>{{ Property.Name  }}</h2>
+    <h4>{{ Property.Type  }}</h4>
+    <h5>{{ Property.Price  }}</h5>
   </div>
 </div>
 
