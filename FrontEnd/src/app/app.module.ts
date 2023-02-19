@@ -11,12 +11,14 @@ import { PropertyCardComponent } from './property/property-card/property-card.co
 import { HousingService } from './services/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailsComponent } from './property/property-details/property-details.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoute: Routes = [
   {path: '', component: PropertyListComponent},
   {path: 'add-property', component: AddPropertyComponent},
   {path: 'rent-property', component: PropertyListComponent},
-  {path: 'property-details/:id', component: PropertyDetailsComponent}
+  {path: 'property-details/:id', component: PropertyDetailsComponent},
+  {path: '**', component: PropertyListComponent}
 
 ]
 
@@ -34,6 +36,7 @@ const appRoute: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoute)
   ],
   providers: [

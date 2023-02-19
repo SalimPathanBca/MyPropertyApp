@@ -1,5 +1,15 @@
 <div>
   property-details works! Property Id : {{ propertyId }}
+  <br /><br />
+  <button (click)="onSelectNextPage()" class="btn btn-primary">Select Next Page</button>
+
+  <br /><br /><br />
+
+  <button class="btn btn-secondary" routerLink="/property-details/1">1</button> &nbsp;
+  <button class="btn btn-secondary" routerLink="/property-details/2">2</button> &nbsp;
+  <button class="btn btn-secondary" routerLink="/property-details/3">3</button> &nbsp;
+  <button class="btn btn-secondary" [routerLink]="['/property-details', '4']">4</button>
+
 </div>
 
 

@@ -1,9 +1,10 @@
-<div class="card border-0 bg-dark opacity-40">
+<div class="card border-0 shadow bg-dark opacity-40">
   <div class="card-img-wrapper">
-    <img class="card-img-top"  src="assets/images/House_Default.jpg" />
+    <img *ngIf="Property.Image" class="card-img-top"  src="assets/images/{{ Property.Image }}.jpg" />
+    <img *ngIf="!Property.Image" class="card-img-top"  src="assets/images/House_Default.jpg" />
     <ul class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
-        <button class="btn btn-info" routerLink="/property-details/{{ Property.Id }}"><img style="height: 30px; width: 30px;" src="assets/images/phone.svg" /></button>
+        <button class="btn btn-primary"  routerLink="/property-details/{{ Property.Id }}"><img style="height: 30px; width: 30px;" src="assets/images/phone.svg" /></button>
       </li>
       <li class="list-inline-item">
         <button class="btn btn-warning"><img style="height: 30px; width: 30px;" src="assets/images/email.svg" /></button>
@@ -11,9 +12,9 @@
     </ul>
   </div>
   <div class="card-body p2">
-    <p class="h3 text-white">{{ Property.Name  }}</p>
-    <p class="h4 text-secondary">{{ Property.Type  }}</p>
-    <p class="text-sm-start text-info">{{ Property.Price  }}</p>
+    <p class="h3  text-info">{{ Property.Name  }}</p>
+    <p class="h4 text-white">{{ Property.Type  }}</p>
+    <p class="text-sm-start text-warning">{{ Property.Price  }}</p>
   </div>
 </div>
 

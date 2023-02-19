@@ -1,39 +1,99 @@
 [
   {
     "Id": 1,
-    "Name": "Mumu Manzil",
+    "SellRent":1,
+    "Name": "Mumu Villa",
     "Type": "House",
-    "Price": 12000
+    "Price": 12000,
+    "Image": "prop-1"
   },
   {
     "Id": 2,
-    "Name": "Sams Manzil",
+    "SellRent":2,
+    "Name": "Sams Building",
     "Type": "Apartment",
-    "Price": 10000
+    "Price": 10000,
+    "Image": "prop-2"
   },
   {
     "Id": 3,
-    "Name": "Mumu Manzil",
+    "SellRent":1,
+    "Name": "Kasho Residency",
     "Type": "House",
-    "Price": 12000
+    "Price": 12000,
+    "Image": "prop-3"
   },
   {
     "Id": 4,
-    "Name": "Zafarkhan Manzil",
+    "SellRent":2,
+    "Name": "Pathan Manzil",
     "Type": "House",
-    "Price": 15000
+    "Price": 15000,
+    "Image": "prop-4"
   },
   {
     "Id": 5,
+    "SellRent":1,
     "Name": "Noor Manzil",
     "Type": "Villa",
-    "Price": 16000
+    "Price": 16000,
+    "Image": "prop-5"
   },
   {
     "Id": 6,
+    "SellRent":2,
     "Name": "Hum Manzil",
     "Type": "House",
-    "Price": 10000
+    "Price": 10000,
+    "Image": "prop-6"
+  },
+  {
+    "Id": 7,
+    "SellRent":1,
+    "Name": "Salim Palace",
+    "Type": "House",
+    "Price": 12500,
+    "Image": "prop-7"
+  },
+  {
+    "Id": 8,
+    "SellRent":2,
+    "Name": "Splits Villa",
+    "Type": "Apartment",
+    "Price": 9000,
+    "Image": "prop-8"
+  },
+  {
+    "Id": 9,
+    "SellRent":1,
+    "Name": "Sri Nivas",
+    "Type": "House",
+    "Price": 18000,
+    "Image": "prop-9"
+  },
+  {
+    "Id": 10,
+    "SellRent":2,
+    "Name": "Jason Villa",
+    "Type": "House",
+    "Price": 15000,
+    "Image": "prop-10"
+  },
+  {
+    "Id": 11,
+    "SellRent":1,
+    "Name": "Emad Residency",
+    "Type": "Villa",
+    "Price": 15500,
+    "Image": "prop-11"
+  },
+  {
+    "Id": 12,
+    "SellRent":2,
+    "Name": "Joe Building",
+    "Type": "House",
+    "Price": 10000,
+    "Image": "prop-12"
   }
 
 ]

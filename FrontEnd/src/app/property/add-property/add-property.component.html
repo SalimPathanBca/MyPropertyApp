@@ -1,4 +1,32 @@
-<p>
-  add-property works!
-</p>
-<button (click)="onBack()" class="btn btn-info" >Back</button>
+<br />
+<div class="card shadow bg-light col-lg-6 col-md-8 col-md-12 mx-auto ">
+  <div class="card-header text-center bg-dark text-white fw-bolder">
+      Add New Property
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #Form="ngForm">
+      <div class="form-group">
+        <label class="form-label" id="lblPropertyName" for="txtPropertyName">Property Name</label>
+        <input class="form-control" type="text" id="txtPropertyName" #txtPropertyName="ngModel" ngModel name="Name"  required minlength="5"/>
+        <span *ngIf="!txtPropertyName.valid && txtPropertyName.touched" class="error-block">
+          <span *ngIf="txtPropertyName.hasError('required')">Please enter Property Name</span>
+          <span *ngIf="txtPropertyName.hasError('minlength')">Property Name must have atleast 5 Characters</span>
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="lblPropertyType" for="txtPropertyType" >Property Type</label>
+        <input class="form-control" type="text" id="txtPropertyType" ngModel name="Type" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="lblPropertyPrice" for="txtPropertyPrice" >Property Price</label>
+        <input class="form-control" type="text" id="txtPropertyPrice" ngModel name="Price" />
+      </div>
+      <br />
+      <div class="form-group">
+        <button [disabled]="!Form.valid" type="submit" class="btn btn-primary" id="btnSave">Save</button> &nbsp;
+        <button class="btn btn-danger" id="btnCancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<br />
