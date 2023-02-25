@@ -1,0 +1,19 @@
+.ng-invalid.ng-touched{
+  border-color: red;
+}
+.error-block{
+font-size: small;
+color:red;
+}
+
+.SpaceAfterNavBar
+{
+  margin-top: 70px;
+}
+/* .blackBackground{
+  background-color: black;
+} */
+.whiteBackground
+{
+  background-color: white;
+}
