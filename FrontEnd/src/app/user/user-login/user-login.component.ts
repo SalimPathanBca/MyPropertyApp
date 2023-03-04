@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
@@ -16,7 +17,7 @@ isSubmitted! : boolean;
 loggedinUser!: User;
 
 
-  constructor(private alertService: AlertifyService, private fb: FormBuilder, private userService: UserServiceService) { }
+  constructor(private alerts: AlertifyService, private fb: FormBuilder, private userService: UserServiceService, private route: Router) { }
 
   ngOnInit() {
     this.createLoginForm();
@@ -50,19 +51,19 @@ loggedinUser!: User;
 
         this.isSubmitted = false;
         this.loggedinUser = result;
-        this.alertService.success("Login Done! Welcome : <br />"+ this.loggedinUser.userName
-        + "<br />"+ this.loggedinUser.email
-        + "<br />"+ this.loggedinUser.mobile + "<br />");
+        localStorage.setItem('token', this.loggedinUser.userName);
+        this.alerts.success("Welcome: "+ this.loggedinUser.userName);
+        this.route.navigate(['/']);
       }
       else
       {
-        this.alertService.error("Invalid User Name or Password. Please try again");
+        this.alerts.error("Invalid User Name or Password. Please try again");
       }
 
     }
     else
     {
-      this.alertService.error("Pleae enter User Name or Password to Login");
+      this.alerts.error("Pleae enter User Name or Password to Login");
     }
 
   }

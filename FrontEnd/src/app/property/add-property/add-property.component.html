@@ -1,31 +1,192 @@
 <br />
 <div class="row">
-<div class="card shadow bg-light col-lg-6 col-md-8 col-md-12 mx-auto ">
+<div class="card shadow bg-light col-lg-8 col-md-10 col-sm-12 mx-auto ">
   <div class="card-header text-center bg-dark text-white fw-bolder">
-      Add New Property
+      List your Property
   </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #Form="ngForm">
+      <div>
+        <tabset #formTabs>
+          <tab heading="Basic Info">
+            <br />
+            <p class="form-label fw-bolder ">I want to</p>
+            <div class="btn-group" btnRadioGroup>
+                <label class="btn btn-outline-primary me-2" btnRadio="1" role="button" name="SellRent">Sell</label>
+                <label class="btn btn-outline-primary" btnRadio="2" role="button" name="SellRent">Rent</label>
+            </div>
+
+          <div class="form-group">
+            <label class="form-label fw-bolder " id="lblPropertyName" for="txtPropertyName">Property Name</label>
+            <input class="form-control" type="text" id="txtPropertyName" #txtPropertyName="ngModel" ngModel name="Name"  required minlength="5"/>
+            <span *ngIf="!txtPropertyName.valid && txtPropertyName.touched" class="error-block">
+              <span *ngIf="txtPropertyName.hasError('required')">Please enter Property Name</span>
+              <span *ngIf="txtPropertyName.hasError('minlength')">Property Name must atleast 5 Characters</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label fw-bolder " id="lblPropertyType" for="txtPropertyType" >Property Type</label>
+            <input class="form-control" type="text" id="txtPropertyType" ngModel name="Type" />
+          </div>
+          <div class="form-group">
+            <label class="form-label fw-bolder " id="lblPropertyPrice" for="txtPropertyPrice" >Property Price</label>
+            <input class="form-control" type="text" id="txtPropertyPrice" ngModel name="Price" />
+          </div>
+      <br />
       <div class="form-group">
-        <label class="form-label" id="lblPropertyName" for="txtPropertyName">Property Name</label>
-        <input class="form-control" type="text" id="txtPropertyName" #txtPropertyName="ngModel" ngModel name="Name"  required minlength="5"/>
-        <span *ngIf="!txtPropertyName.valid && txtPropertyName.touched" class="error-block">
-          <span *ngIf="txtPropertyName.hasError('required')">Please enter Property Name</span>
-          <span *ngIf="txtPropertyName.hasError('minlength')">Property Name must have atleast 5 Characters</span>
+        <button (click)="selectTab(1)" type="button" class="btn btn-primary col-12">Next</button>
+      </div>
+        </tab>
+          <tab heading="Price and Area">
+            <br />
+            <div class="form-group">
+         <label class="form-label fw-bolder ">Price (in USD)</label>
+         <input class="form-control" type="text" id="txtPrice" #txtPrice="ngModel" ngModel name="Price"  required [min]="1"/>
+         <span *ngIf="!txtPrice.valid && txtPrice.touched" class="error-block">
+           <span *ngIf="txtPrice.hasError('required')">Please enter Price</span>
+           <span *ngIf="txtPrice.hasError('min')">Price must be greater than 0</span>
+         </span>
+       </div>
+       <div class="form-group">
+        <label class="form-label fw-bolder ">Security (in USD)</label>
+        <input class="form-control" type="text" id="txtSecurity" #txtSecurity="ngModel" ngModel name="Security"  required [min]="1"/>
+        <span *ngIf="!txtSecurity.valid && txtSecurity.touched" class="error-block">
+          <span *ngIf="txtSecurity.hasError('required')">Please enter Security</span>
+          <span *ngIf="txtSecurity.hasError('min')">Security must be greater than 0</span>
         </span>
       </div>
       <div class="form-group">
-        <label class="form-label" id="lblPropertyType" for="txtPropertyType" >Property Type</label>
-        <input class="form-control" type="text" id="txtPropertyType" ngModel name="Type" />
+        <label class="form-label fw-bolder ">Maintenance (in USD)</label>
+        <input class="form-control" type="text" id="txtMaintenance" #txtMaintenance="ngModel" ngModel name="Maintenance"  required [min]="1"/>
+        <span *ngIf="!txtMaintenance.valid && txtMaintenance.touched" class="error-block">
+          <span *ngIf="txtMaintenance.hasError('required')">Please enter Maintenance</span>
+          <span *ngIf="txtMaintenance.hasError('min')">Maintenance must be greater than 0</span>
+        </span>
       </div>
       <div class="form-group">
-        <label class="form-label" id="lblPropertyPrice" for="txtPropertyPrice" >Property Price</label>
-        <input class="form-control" type="text" id="txtPropertyPrice" ngModel name="Price" />
+        <label class="form-label fw-bolder ">Built Area (in Sqr Feet)</label>
+        <input class="form-control" type="text" id="txtBuiltArea" #txtBuiltArea="ngModel" ngModel name="BuiltArea"  required [min]="1"/>
+        <span *ngIf="!txtBuiltArea.valid && txtBuiltArea.touched" class="error-block">
+          <span *ngIf="txtBuiltArea.hasError('required')">Please enter Built Area</span>
+          <span *ngIf="txtBuiltArea.hasError('min')">Built Area must be greater than 0</span>
+        </span>
       </div>
+      <div class="form-group">
+        <label class="form-label fw-bolder ">Carpet Area (in Sqr Feet)</label>
+        <input class="form-control" type="text" id="txtCarpetArea" #txtCarpetArea="ngModel" ngModel name="CarpetArea"  required [min]="1"/>
+        <span *ngIf="!txtCarpetArea.valid && txtCarpetArea.touched" class="error-block">
+          <span *ngIf="txtCarpetArea.hasError('required')">Please enter Carpet Area</span>
+          <span *ngIf="txtCarpetArea.hasError('min')">Carpet Area must be greater than 0</span>
+        </span>
+      </div>
+   <br />
+            <button (click)="selectTab(2)" type="button" class="btn btn-primary col-12 mb-1">Next</button>
+            <button (click)="selectTab(0)" type="button" class="btn btn-warning col-12">Previous</button>
+          </tab>
+          <tab heading="Address Info">
+            <br />
+            <div class="form-group">
+              <label class="form-label fw-bolder ">Floor</label>
+              <input class="form-control" type="text" id="txtFloor" #txtFloor="ngModel" ngModel name="Floor"  required [min]="1"/>
+              <span *ngIf="!txtFloor.valid && txtFloor.touched" class="error-block">
+                <span *ngIf="txtFloor.hasError('required')">Please enter Floor</span>
+                <span *ngIf="txtFloor.hasError('min')">Floor must be greater than 0</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="form-label fw-bolder ">Total Floor</label>
+              <input class="form-control" type="text" id="txtTotalFloor" #txtTotalFloor="ngModel" ngModel name="TotalFloor"  required [min]="1"/>
+              <span *ngIf="!txtTotalFloor.valid && txtTotalFloor.touched" class="error-block">
+                <span *ngIf="txtTotalFloor.hasError('required')">Please enter Total Floor</span>
+                <span *ngIf="txtTotalFloor.hasError('min')">Total Floor must be greater than 0</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="form-label fw-bolder ">Address</label>
+              <input class="form-control" type="text" id="txtAddress" #txtAddress="ngModel" ngModel name="Address"  required [min]="1"/>
+              <span *ngIf="!txtAddress.valid && txtAddress.touched" class="error-block">
+                <span *ngIf="txtAddress.hasError('required')">Please enter Address</span>
+                <span *ngIf="txtAddress.hasError('min')">Address must be greater than 0</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="form-label fw-bolder ">Land Mark</label>
+              <input class="form-control" type="text" id="txtLandMark" #txtLandMark="ngModel" ngModel name="LandMark"  required [min]="1"/>
+              <span *ngIf="!txtLandMark.valid && txtLandMark.touched" class="error-block">
+                <span *ngIf="txtLandMark.hasError('required')">Please enter Land Mark</span>
+                <span *ngIf="txtLandMark.hasError('min')">Land Mark must be greater than 0</span>
+              </span>
+            </div>
+            <br />
+            <button (click)="selectTab(3)" type="button" class="btn btn-primary col-12 mb-1">Next</button>
+            <button (click)="selectTab(1)" type="button" class="btn btn-warning col-12">Previous</button>
+          </tab>
+          <tab heading="Other Details">
+            <br />
+            <div class="row">
+            <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-label fw-bolder me-4">Ready To Move</label><br />
+              <input class="form-check-input" type="radio" id="rdoYes" value="1" name="RTM"/>
+              <label class="form-check-inline">Yes</label>
+              <input class="form-check-input" type="radio" id="rdoNo" value="2" name="RTM"/>
+              <label class="form-check-inline">No</label>
+              </div>
+              </div>
+<div class="col-lg-4">
+              <div class="form-group">
+              <label class="form-label fw-bolder ">Possassion/Available From</label>
+              <input class="form-control" type="date"/>
+            </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-label fw-bolder ">Age of Property</label>
+                <input class="form-control" type="text"/>
+              </div>
+              </div>
+          </div>
+          <br />
+          <div class="row">
+
+<div class="col-lg-6">
+  <div class="form-group">
+    <label class="form-label fw-bolder ">Gated Communty</label>
+    <input class="form-control" type="text"/>
+  </div>
+            </div>
+            <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-label fw-bolder ">Main Entrance</label>
+              <input class="form-control" type="text"/>
+            </div>
+            </div>
+          </div>
+            <div class="form-group">
+              <label class="form-label fw-bolder ">Description</label>
+              <textarea type="text" class="form-control" rows="4"></textarea>
+            </div>
+            <br />
+            <button (click)="selectTab(4)" type="button" class="btn btn-primary col-12 mb-1">Next</button>
+            <button (click)="selectTab(2)" type="button" class="btn btn-warning col-12">Previous</button>
+          </tab>
+          <tab heading="Photo">
+            <br />
+          <div class="form-group">
+            <div class="photo-control" >
+              <button type="button" class="btn btn-dark mt-5">Upload</button> <br />
+              <span class="text-danger">This is under contruction</span>
+            </div>
+
+          </div>
+
       <br />
-      <div class="form-group">
-        <button [disabled]="!Form.valid" type="submit" class="btn btn-primary" id="btnSave">Save</button> &nbsp;
-        <button class="btn btn-danger" id="btnCancel">Cancel</button>
+      <button (click)="selectTab(3)" type="button" class="btn btn-warning col-12 mb-1">Previous</button>
+            <button (click)="onSubmit()" type="button" class="btn btn-success col-12 mb-1">Save</button>
+            <button type="button" class="btn btn-danger col-12 mb-1">Cancel</button>
+
+          </tab>
+        </tabset>
       </div>
     </form>
   </div>

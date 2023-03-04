@@ -8,7 +8,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label class="form-label">Name</label>
-        <input class="form-control" type="text" id="txtName" formControlName="userName" />
+        <input class="form-control" type="text" id="txtName" formControlName="userName" [ngClass]="(userSubmitted && userName.untouched && !userName.valid) ? 'showErrorBorder' : ''" />
         <span *ngIf="!userName.valid && (userName.touched || userSubmitted == true)" class="error-block">
           <span *ngIf="userName.hasError('required')">Please enter Name</span>
           <span *ngIf="userName.hasError('minlength')">Name must be atleast 5 characters</span>
@@ -16,7 +16,7 @@
       </div>
       <div class="form-group">
         <label class="form-label" >Email</label>
-        <input class="form-control" type="text" id="txtEmail" formControlName="email" />
+        <input class="form-control" type="text" id="txtEmail" formControlName="email" [ngClass]="(userSubmitted && email.untouched && !email.valid) ? 'showErrorBorder' : ''"  />
         <span *ngIf="!email.valid && (email.touched || userSubmitted==true)" class="error-block">
           <span *ngIf="email.hasError('required')">Please enter Email</span>
           <span *ngIf="email.hasError('email')">Please enter Valid Email</span>
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group">
         <label class="form-label">Password</label>
-        <input class="form-control" type="password" id="txtPassword" formControlName="password" />
+        <input class="form-control" type="password" id="txtPassword" formControlName="password" [ngClass]="(userSubmitted && password.untouched && !password.valid) ? 'showErrorBorder' : ''"  />
         <span *ngIf="!password.valid && (password.touched || userSubmitted == true)" class="error-block">
           <span *ngIf="password.errors?.['required']">Please enter password</span>
           <span *ngIf="password.errors?.['minlength']">Password must be atleast 8 characters</span>
@@ -32,8 +32,8 @@
       </div>
       <div class="form-group">
         <label class="form-label">Confirm Password</label>
-        <input class="form-control" type="password" id="txtConfirmPassword" formControlName="confirmPassword" />
-        <span *ngIf="!confirmPassword.valid && (confirmPassword.touched || userSubmitted == true)" class="error-block">
+        <input class="form-control" type="password" id="txtConfirmPassword" formControlName="confirmPassword" [ngClass]="(userSubmitted && confirmPassword.untouched && !confirmPassword.valid) ? 'showErrorBorder' : ''"  />
+        <span *ngIf="!confirmPassword.valid && (confirmPassword.touched || userSubmitted)" class="error-block">
           <span *ngIf="confirmPassword.hasError('required')">Please enter Confirm Password</span>
         </span>
         <span *ngIf="registerForm.errors?.['notmatched'] && confirmPassword.valid" class="error-block">
@@ -42,8 +42,8 @@
       </div>
       <div class="form-group">
         <label class="form-label">Mobile</label>
-        <input class="form-control" type="text" id="txtMobile" formControlName="mobile" />
-        <span *ngIf="!mobile.valid && (mobile.touched || userSubmitted == true)" class="error-block">
+        <input class="form-control" type="text" id="txtMobile" formControlName="mobile" [ngClass]="(userSubmitted && mobile.untouched && !mobile.valid) ? 'showErrorBorder' : ''"  />
+        <span *ngIf="!mobile.valid && (mobile.touched || userSubmitted)" class="error-block">
           <span *ngIf="mobile.hasError('required')">Please enter Mobile Number</span>
           <span *ngIf="mobile.hasError('maxlength')">Mobile Number can not be greater than 10 digit</span>
         </span>
@@ -54,7 +54,7 @@
       Form Status: {{ registerForm.value | json }}
        <br /> -->
       <div class="form-group">
-        <button [disabled]="!registerForm.valid"  type="submit" class="btn btn-primary" id="btnSave">Save</button> &nbsp;
+        <button type="submit" class="btn btn-primary" id="btnSave">Save</button> &nbsp;
         <button type="button" (click)="onReset()" class="btn btn-danger" id="btnCancel">Cancel</button>
       </div>
     </form>
