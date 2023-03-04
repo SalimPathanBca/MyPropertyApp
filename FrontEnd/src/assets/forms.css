@@ -12,10 +12,9 @@ color:red;
 
 .btn-group > label[ng-reflect-btn-radio]
 {
-  border-radius: 44%;
+  border-radius: 60%;
   padding: 0 15px;
-  line-height: 30px;
-
+  line-height: 35px;
 }
 
 .SpaceAfterNavBar

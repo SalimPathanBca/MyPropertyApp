@@ -1,6 +1,7 @@
 <br />
 <div class="row">
-<div class="card shadow bg-light col-lg-8 col-md-10 col-sm-12 mx-auto ">
+<div class="col-lg-8 col-md-12 col-sm-12">
+<div class="card shadow bg-light col-12 mx-auto">
   <div class="card-header text-center bg-dark text-white fw-bolder">
       List your Property
   </div>
@@ -10,27 +11,43 @@
         <tabset #formTabs>
           <tab heading="Basic Info">
             <br />
+            <div class="form-group">
             <p class="form-label fw-bolder ">I want to</p>
             <div class="btn-group" btnRadioGroup>
                 <label class="btn btn-outline-primary me-2" btnRadio="1" role="button" name="SellRent">Sell</label>
                 <label class="btn btn-outline-primary" btnRadio="2" role="button" name="SellRent">Rent</label>
             </div>
+</div>
+<div class="form-group">
+  <p class="form-label fw-bolder ">BHK</p>
+  <div class="btn-group" btnRadioGroup>
+      <label *ngFor="let bhk of [1,2,3,4]" class="btn btn-outline-primary me-2"  tabindex="0" [btnRadio]="bhk" role="button" name="BHK">{{bhk}}</label>
+  </div>
+</div>
 
           <div class="form-group">
-            <label class="form-label fw-bolder " id="lblPropertyName" for="txtPropertyName">Property Name</label>
-            <input class="form-control" type="text" id="txtPropertyName" #txtPropertyName="ngModel" ngModel name="Name"  required minlength="5"/>
+            <p class="form-label fw-bolder ">Property Type</p>
+            <div class="btn-group" name="propertyType" [(ngModel)]="this.propertyView.Type" btnRadioGroup>
+                <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary me-2"  tabindex="0" [btnRadio]="ptype" role="button" name="propertyType" >{{ptype}}</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <p class="form-label fw-bolder ">Furnished Type</p>
+            <div class="btn-group" btnRadioGroup>
+                <label *ngFor="let ftype of furnshedTypes" class="btn btn-outline-primary me-2"  tabindex="0" [btnRadio]="ftype" role="button" name="Type">{{ftype}}</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label fw-bolder " id="lblPropertyName" for="txtPropertyName">in Building/Society/Project</label>
+            <input class="form-control" type="text" id="txtPropertyName" #txtPropertyName="ngModel" ngModel name="Name"  required minlength="5" [(ngModel)]="this.propertyView.Name"/>
             <span *ngIf="!txtPropertyName.valid && txtPropertyName.touched" class="error-block">
-              <span *ngIf="txtPropertyName.hasError('required')">Please enter Property Name</span>
-              <span *ngIf="txtPropertyName.hasError('minlength')">Property Name must atleast 5 Characters</span>
+              <span *ngIf="txtPropertyName.hasError('required')">Please enter Building/Society/Project Name</span>
+              <span *ngIf="txtPropertyName.hasError('minlength')">Building/Society/Project Name must atleast 5 Characters</span>
             </span>
           </div>
           <div class="form-group">
-            <label class="form-label fw-bolder " id="lblPropertyType" for="txtPropertyType" >Property Type</label>
-            <input class="form-control" type="text" id="txtPropertyType" ngModel name="Type" />
-          </div>
-          <div class="form-group">
-            <label class="form-label fw-bolder " id="lblPropertyPrice" for="txtPropertyPrice" >Property Price</label>
-            <input class="form-control" type="text" id="txtPropertyPrice" ngModel name="Price" />
+            <label class="form-label fw-bolder">City</label>
+            <input class="form-control" type="text" />
           </div>
       <br />
       <div class="form-group">
@@ -41,7 +58,7 @@
             <br />
             <div class="form-group">
          <label class="form-label fw-bolder ">Price (in USD)</label>
-         <input class="form-control" type="text" id="txtPrice" #txtPrice="ngModel" ngModel name="Price"  required [min]="1"/>
+         <input class="form-control" type="text" id="txtPrice" #txtPrice="ngModel" [(ngModel)]="this.propertyView.Price"   name="Price"  required [min]="1"/>
          <span *ngIf="!txtPrice.valid && txtPrice.touched" class="error-block">
            <span *ngIf="txtPrice.hasError('required')">Please enter Price</span>
            <span *ngIf="txtPrice.hasError('min')">Price must be greater than 0</span>
@@ -125,18 +142,21 @@
             <br />
             <div class="row">
             <div class="col-lg-4">
-            <div class="form-group">
-              <label class="form-label fw-bolder me-4">Ready To Move</label><br />
-              <input class="form-check-input" type="radio" id="rdoYes" value="1" name="RTM"/>
-              <label class="form-check-inline">Yes</label>
-              <input class="form-check-input" type="radio" id="rdoNo" value="2" name="RTM"/>
-              <label class="form-check-inline">No</label>
+              <div class="form-group">
+                <p class="form-label fw-bolder ">Ready To Move</p>
+                <div class="btn-group" btnRadioGroup>
+                    <label *ngFor="let RTM of ['Yes', 'No']" class="btn btn-outline-primary me-2"  tabindex="0" [btnRadio]="RTM" role="button" name="RTM">{{RTM}}</label>
+                </div>
               </div>
               </div>
 <div class="col-lg-4">
               <div class="form-group">
               <label class="form-label fw-bolder ">Possassion/Available From</label>
-              <input class="form-control" type="date"/>
+              <input type="text"
+              placeholder="Datepicker"
+              class="form-control"
+              bsDatepicker
+              [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }" />
             </div>
             </div>
             <div class="col-lg-4">
@@ -149,17 +169,21 @@
           <br />
           <div class="row">
 
-<div class="col-lg-6">
+<div class="col-lg-4">
   <div class="form-group">
-    <label class="form-label fw-bolder ">Gated Communty</label>
-    <input class="form-control" type="text"/>
+    <p class="form-label fw-bolder ">Gated Community</p>
+    <div class="btn-group" btnRadioGroup>
+        <label *ngFor="let gated of ['Yes', 'No']" class="btn btn-outline-primary me-2"  tabindex="0" [btnRadio]="gated" role="button" name="gated">{{gated}}</label>
+    </div>
   </div>
             </div>
-            <div class="col-lg-6">
-            <div class="form-group">
-              <label class="form-label fw-bolder ">Main Entrance</label>
-              <input class="form-control" type="text"/>
-            </div>
+            <div class="col-lg-8">
+              <div class="form-group">
+                <p class="form-label fw-bolder ">Main Entrance</p>
+                <div class="btn-group" btnRadioGroup>
+                    <label *ngFor="let entrance of ['East', 'West','South','North']" class="btn btn-outline-primary me-2"  tabindex="0" [btnRadio]="entrance" role="button" name="entrance">{{entrance}}</label>
+                </div>
+              </div>
             </div>
           </div>
             <div class="form-group">
@@ -191,5 +215,21 @@
     </form>
   </div>
 </div>
+</div>
+<div class="col-lg-4 col-md-12 col-sm-12">
+  <div class="card shadow bg-light col-12">
+    <div class="card-header text-center bg-dark text-white fw-bolder">
+        Your Property Preview
+    </div>
+    <div>
+      <app-property-card [Property]="propertyView"></app-property-card>
+      </div>
+      </div>
+
+</div>
+
+
+
+
 </div>
 <br />
